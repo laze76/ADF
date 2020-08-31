@@ -31,6 +31,117 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "LatD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LatD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"LatM\""
+								},
+								"sink": {
+									"name": "LatM",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"LatS\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LatS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"NS\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"LonD\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LonD",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"LonM\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LonM",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"LonS\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LonS",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"EW\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EW",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"City\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "City",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": " \"State\"",
+									"type": "String"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
