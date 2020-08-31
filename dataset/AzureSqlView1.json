@@ -1,0 +1,63 @@
+{
+	"name": "AzureSqlView1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "LatD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LatM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LatS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NS",
+				"type": "varchar"
+			},
+			{
+				"name": "LonD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LonM",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LonS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EW",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "cities2stg"
+		}
+	}
+}
