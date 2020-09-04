@@ -1,0 +1,321 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"HttpServer1": {
+			"type": "string"
+		},
+		"AzureSqlDatabase1": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "firstFile",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.00:00:30",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "LatD",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LatD",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"LatM\""
+										},
+										"sink": {
+											"name": "LatM",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"LatS\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LatS",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"NS\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NS",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"LonD\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LonD",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"LonM\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LonM",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"LonS\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LonS",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"EW\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "EW",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"City\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "City",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": " \"State\"",
+											"type": "String"
+										},
+										"sink": {
+											"name": "State",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "cities",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureSqlTable1",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/cities')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cities')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('HttpServer1')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": "~jburkardt/data/csv/cities.csv"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "LatD",
+						"type": "String"
+					},
+					{
+						"name": " \"LatM\"",
+						"type": "String"
+					},
+					{
+						"name": " \"LatS\"",
+						"type": "String"
+					},
+					{
+						"name": " \"NS\"",
+						"type": "String"
+					},
+					{
+						"name": " \"LonD\"",
+						"type": "String"
+					},
+					{
+						"name": " \"LonM\"",
+						"type": "String"
+					},
+					{
+						"name": " \"LonS\"",
+						"type": "String"
+					},
+					{
+						"name": " \"EW\"",
+						"type": "String"
+					},
+					{
+						"name": " \"City\"",
+						"type": "String"
+					},
+					{
+						"name": " \"State\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureSqlDatabase1')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "LatD",
+						"type": "varchar"
+					},
+					{
+						"name": "LatM",
+						"type": "varchar"
+					},
+					{
+						"name": "LatS",
+						"type": "varchar"
+					},
+					{
+						"name": "NS",
+						"type": "varchar"
+					},
+					{
+						"name": "LonD",
+						"type": "varchar"
+					},
+					{
+						"name": "LonM",
+						"type": "varchar"
+					},
+					{
+						"name": "LonS",
+						"type": "varchar"
+					},
+					{
+						"name": "EW",
+						"type": "varchar"
+					},
+					{
+						"name": "City",
+						"type": "varchar"
+					},
+					{
+						"name": "State",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "cities"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

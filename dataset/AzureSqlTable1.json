@@ -1,0 +1,57 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "LatD",
+				"type": "varchar"
+			},
+			{
+				"name": "LatM",
+				"type": "varchar"
+			},
+			{
+				"name": "LatS",
+				"type": "varchar"
+			},
+			{
+				"name": "NS",
+				"type": "varchar"
+			},
+			{
+				"name": "LonD",
+				"type": "varchar"
+			},
+			{
+				"name": "LonM",
+				"type": "varchar"
+			},
+			{
+				"name": "LonS",
+				"type": "varchar"
+			},
+			{
+				"name": "EW",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "cities"
+		}
+	}
+}
